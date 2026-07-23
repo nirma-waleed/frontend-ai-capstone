@@ -86,7 +86,12 @@ function SettingsForm() {
       </header>
 
       <fieldset className="settings-form__section">
-        <legend>Profile</legend>
+        <legend>
+          <span className="settings-form__section-icon settings-form__section-icon--profile" aria-hidden="true">
+            ●
+          </span>
+          Profile
+        </legend>
 
         <div className="settings-form__field settings-form__field--full">
           <label htmlFor="displayName">Display name</label>
@@ -140,7 +145,12 @@ function SettingsForm() {
       </fieldset>
 
       <fieldset className="settings-form__section">
-        <legend>Preferences</legend>
+        <legend>
+          <span className="settings-form__section-icon settings-form__section-icon--preferences" aria-hidden="true">
+            ◆
+          </span>
+          Preferences
+        </legend>
 
         <div className="settings-form__field">
           <label htmlFor="theme">Theme</label>
@@ -184,7 +194,12 @@ function SettingsForm() {
       </fieldset>
 
       <fieldset className="settings-form__section">
-        <legend>Notifications</legend>
+        <legend>
+          <span className="settings-form__section-icon settings-form__section-icon--notifications" aria-hidden="true">
+            ◉
+          </span>
+          Notifications
+        </legend>
 
         <label className="settings-form__toggle">
           <input
