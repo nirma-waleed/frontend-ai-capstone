@@ -2,9 +2,9 @@ import { useState } from 'react'
 import './SettingsForm.css'
 
 const INITIAL_SETTINGS = {
-  displayName: '',
-  email: '',
-  bio: '',
+  displayName: 'Amina Khan',
+  email: 'amina.khan@example.com',
+  bio: 'Building thoughtful products and useful tools.',
   theme: 'system',
   language: 'en',
   timezone: 'UTC',
@@ -20,29 +20,44 @@ function SettingsForm() {
   const [status, setStatus] = useState(null)
 
   const hasChanges = JSON.stringify(settings) !== JSON.stringify(savedSettings)
+  const hasValidationErrors = Object.values(errors).some(Boolean)
+  const canSave = hasChanges && !hasValidationErrors
+
+  function getFieldError(name, value) {
+    if (name === 'displayName' && !value.trim()) {
+      return 'Display name is required.'
+    }
+
+    if (name === 'email') {
+      if (!value.trim()) return 'Email is required.'
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())) {
+        return 'Enter a valid email address.'
+      }
+    }
+
+    return undefined
+  }
 
   function handleChange(event) {
     const { name, value, type, checked } = event.target
+    const nextValue = type === 'checkbox' ? checked : value
     setSettings((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: nextValue,
     }))
-    setErrors((prev) => ({ ...prev, [name]: undefined }))
+    if (name === 'displayName' || name === 'email') {
+      setErrors((prev) => ({ ...prev, [name]: getFieldError(name, value) }))
+    }
     setStatus(null)
   }
 
   function validate() {
     const nextErrors = {}
 
-    if (!settings.displayName.trim()) {
-      nextErrors.displayName = 'Display name is required.'
-    }
-
-    if (!settings.email.trim()) {
-      nextErrors.email = 'Email is required.'
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(settings.email)) {
-      nextErrors.email = 'Enter a valid email address.'
-    }
+    const displayNameError = getFieldError('displayName', settings.displayName)
+    const emailError = getFieldError('email', settings.email)
+    if (displayNameError) nextErrors.displayName = displayNameError
+    if (emailError) nextErrors.email = emailError
 
     setErrors(nextErrors)
     return Object.keys(nextErrors).length === 0
@@ -63,7 +78,8 @@ function SettingsForm() {
   }
 
   return (
-    <form className="settings-form" onSubmit={handleSubmit} noValidate>
+    <main className="settings-page">
+      <form className="settings-form" onSubmit={handleSubmit} noValidate>
       <header className="settings-form__header">
         <h1>Settings</h1>
         <p>Manage your profile, preferences, and notification options.</p>
@@ -72,7 +88,7 @@ function SettingsForm() {
       <fieldset className="settings-form__section">
         <legend>Profile</legend>
 
-        <div className="settings-form__field">
+        <div className="settings-form__field settings-form__field--full">
           <label htmlFor="displayName">Display name</label>
           <input
             id="displayName"
@@ -91,8 +107,8 @@ function SettingsForm() {
           )}
         </div>
 
-        <div className="settings-form__field">
-          <label htmlFor="email">Email</label>
+        <div className="settings-form__field settings-form__field--full">
+          <label htmlFor="email">Email address</label>
           <input
             id="email"
             name="email"
@@ -145,8 +161,7 @@ function SettingsForm() {
           >
             <option value="en">English</option>
             <option value="es">Spanish</option>
-            <option value="fr">French</option>
-            <option value="de">German</option>
+            <option value="ur">Urdu</option>
           </select>
         </div>
 
@@ -220,11 +235,12 @@ function SettingsForm() {
         <button type="button" className="settings-form__btn settings-form__btn--secondary" onClick={handleReset} disabled={!hasChanges}>
           Cancel
         </button>
-        <button type="submit" className="settings-form__btn settings-form__btn--primary" disabled={!hasChanges}>
+        <button type="submit" className="settings-form__btn settings-form__btn--primary" disabled={!canSave}>
           Save changes
         </button>
       </div>
-    </form>
+      </form>
+    </main>
   )
 }
 
