@@ -1,3 +1,4 @@
+import IncomeInput from './components/IncomeInput'
 import FilterBar from './components/FilterBar'
 import { useEffect, useState } from 'react'
 import './App.css'
@@ -52,9 +53,18 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
 
+const [monthlyIncome, setMonthlyIncome] = useState(() => {
+  if (typeof window === 'undefined') return 5000
+
+  const savedIncome = localStorage.getItem('monthly-income')
+  return savedIncome ? Number(savedIncome) : 5000
+})
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses))
   }, [expenses])
+  useEffect(() => {
+  localStorage.setItem('monthly-income', monthlyIncome)
+}, [monthlyIncome])
 
   // NEW
   const filteredExpenses = expenses.filter((expense) => {
@@ -69,6 +79,14 @@ function App() {
   return matchesSearch && matchesCategory
 })
 
+const totalExpenses = expenses.reduce(
+  (sum, expense) => sum + Number(expense.amount),
+  0
+)
+
+const balance = monthlyIncome - totalExpenses
+
+const totalEntries = expenses.length
   const validateForm = (values) => {
     const nextErrors = {}
 
@@ -188,13 +206,21 @@ function App() {
           <h1>Track your spending in one place</h1>
         </div>
       </header>
-
+<IncomeInput
+  monthlyIncome={monthlyIncome}
+  setMonthlyIncome={setMonthlyIncome}
+/>
       <section
         className="dashboard"
         aria-label="Expense dashboard"
       >
         <div className="dashboard-main">
-          <SummaryCard expenses={expenses} />
+          <SummaryCard
+  monthlyIncome={monthlyIncome}
+  totalExpenses={totalExpenses}
+  balance={balance}
+  totalEntries={totalEntries}
+/>
 
           <ExpenseForm
             formData={formData}

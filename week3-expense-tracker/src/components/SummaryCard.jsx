@@ -1,17 +1,32 @@
-function SummaryCard({ expenses }) {
-  const total = expenses.reduce((sum, expense) => sum + Number(expense.amount), 0)
-
+function SummaryCard({
+  monthlyIncome,
+  totalExpenses,
+  balance,
+  totalEntries,
+}) {
   return (
     <section className="summary-card" aria-labelledby="summary-title">
-      <h2 id="summary-title">Overview</h2>
-      <div className="summary-stats">
-        <div>
-          <p className="summary-label">Total spent</p>
-          <p className="summary-value">${total.toFixed(2)}</p>
+      <h2 id="summary-title">Expense Dashboard</h2>
+
+      <div className="summary-grid">
+        <div className="summary-box">
+          <h3> Monthly Income</h3>
+          <p>${monthlyIncome.toFixed(2)}</p>
         </div>
-        <div>
-          <p className="summary-label">Entries</p>
-          <p className="summary-value">{expenses.length}</p>
+
+        <div className="summary-box">
+          <h3> Total Expenses</h3>
+          <p>${totalExpenses.toFixed(2)}</p>
+        </div>
+
+        <div className="summary-box">
+          <h3> Remaining Balance</h3>
+          <p>${balance.toFixed(2)}</p>
+        </div>
+
+        <div className="summary-box">
+          <h3> Total Entries</h3>
+          <p>{totalEntries}</p>
         </div>
       </div>
     </section>
