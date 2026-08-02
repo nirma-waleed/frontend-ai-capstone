@@ -1,8 +1,10 @@
+import FilterBar from './components/FilterBar'
 import { useEffect, useState } from 'react'
 import './App.css'
 import ExpenseForm from './components/ExpenseForm'
 import ExpenseList from './components/ExpenseList'
 import SummaryCard from './components/SummaryCard'
+import SearchBar from './components/SearchBar'
 
 const STORAGE_KEY = 'expense-tracker-data'
 
@@ -31,6 +33,7 @@ function getInitialExpenses() {
     }
 
     const parsedExpenses = JSON.parse(storedExpenses)
+
     return Array.isArray(parsedExpenses) && parsedExpenses.length > 0
       ? parsedExpenses
       : starterExpenses
@@ -45,9 +48,26 @@ function App() {
   const [errors, setErrors] = useState({})
   const [editingId, setEditingId] = useState(null)
 
+  // NEW
+  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('All')
+
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses))
   }, [expenses])
+
+  // NEW
+  const filteredExpenses = expenses.filter((expense) => {
+  const matchesSearch = expense.description
+    .toLowerCase()
+    .includes(searchTerm.toLowerCase())
+
+  const matchesCategory =
+    selectedCategory === 'All' ||
+    expense.category === selectedCategory
+
+  return matchesSearch && matchesCategory
+})
 
   const validateForm = (values) => {
     const nextErrors = {}
@@ -60,6 +80,7 @@ function App() {
       nextErrors.amount = 'Amount is required.'
     } else {
       const amountValue = Number(values.amount)
+
       if (Number.isNaN(amountValue) || amountValue <= 0) {
         nextErrors.amount = 'Amount must be a positive number.'
       }
@@ -79,7 +100,11 @@ function App() {
   const handleInputChange = (event) => {
     const { name, value } = event.target
 
-    setFormData((previous) => ({ ...previous, [name]: value }))
+    setFormData((previous) => ({
+      ...previous,
+      [name]: value,
+    }))
+
     setErrors((previous) => {
       if (!previous[name]) {
         return previous
@@ -120,8 +145,10 @@ function App() {
     if (editingId) {
       setExpenses((previous) =>
         previous.map((expense) =>
-          expense.id === editingId ? { ...expense, ...nextExpense } : expense,
-        ),
+          expense.id === editingId
+            ? { ...expense, ...nextExpense }
+            : expense
+        )
       )
     } else {
       setExpenses((previous) => [nextExpense, ...previous])
@@ -132,17 +159,21 @@ function App() {
 
   const handleEditExpense = (expense) => {
     setEditingId(expense.id)
+
     setFormData({
       description: expense.description,
       amount: expense.amount,
       category: expense.category,
       date: expense.date,
     })
+
     setErrors({})
   }
 
   const handleDeleteExpense = (id) => {
-    setExpenses((previous) => previous.filter((expense) => expense.id !== id))
+    setExpenses((previous) =>
+      previous.filter((expense) => expense.id !== id)
+    )
 
     if (editingId === id) {
       resetForm()
@@ -158,9 +189,13 @@ function App() {
         </div>
       </header>
 
-      <section className="dashboard" aria-label="Expense dashboard">
+      <section
+        className="dashboard"
+        aria-label="Expense dashboard"
+      >
         <div className="dashboard-main">
           <SummaryCard expenses={expenses} />
+
           <ExpenseForm
             formData={formData}
             errors={errors}
@@ -170,8 +205,22 @@ function App() {
             onCancel={resetForm}
           />
         </div>
+<SearchBar
+  searchTerm={searchTerm}
+  setSearchTerm={setSearchTerm}
+/>
 
-        <ExpenseList expenses={expenses} onDelete={handleDeleteExpense} onEdit={handleEditExpense} />
+<FilterBar
+  selectedCategory={selectedCategory}
+  setSelectedCategory={setSelectedCategory}
+/>
+
+<ExpenseList
+  expenses={filteredExpenses}
+  onDelete={handleDeleteExpense}
+  onEdit={handleEditExpense}
+/>
+    
       </section>
     </main>
   )

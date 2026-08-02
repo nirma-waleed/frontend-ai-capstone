@@ -285,3 +285,37 @@ button:focus-visible {
     justify-content: flex-end;
   }
 }
+.search-bar {
+  margin: 1.5rem 0;
+}
+
+.search-bar label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.filter-bar {
+  margin-bottom: 1.5rem;
+}
+
+.filter-bar label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.filter-bar select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+}
