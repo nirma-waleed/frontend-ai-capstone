@@ -479,3 +479,64 @@ button:focus-visible {
   border-radius: 10px;
   border: 1px solid #d1d5db;
 }
+.theme-toggle {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  background: #2563eb;
+  color: white;
+  transition: 0.3s;
+}
+
+.theme-toggle:hover {
+  background: #1d4ed8;
+}
+
+.dark {
+  background: #111827;
+  color: white;
+  min-height: 100vh;
+}
+
+.dark .summary-card,
+.dark .expense-form,
+.dark .expense-list-section,
+.dark .budget-progress,
+.dark .analytics-card,
+.dark .smart-insights,
+.dark .income-input,
+.dark .search-bar,
+.dark .filter-bar,
+.dark .sort-bar {
+  background: #1f2937;
+  color: white;
+}
+
+.dark input,
+.dark select {
+  background: #374151;
+  color: white;
+  border: 1px solid #4b5563;
+}
+
+.dark button {
+  color: white;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.theme-toggle {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  white-space: nowrap;
+}

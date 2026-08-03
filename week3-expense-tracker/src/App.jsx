@@ -58,7 +58,9 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [sortBy, setSortBy] = useState('newest')
-
+const [darkMode, setDarkMode] = useState(() => {
+  return localStorage.getItem('dark-mode') === 'true'
+})
 const [monthlyIncome, setMonthlyIncome] = useState(() => {
   if (typeof window === 'undefined') return 5000
 
@@ -72,7 +74,9 @@ const [monthlyIncome, setMonthlyIncome] = useState(() => {
   useEffect(() => {
   localStorage.setItem('monthly-income', monthlyIncome)
 }, [monthlyIncome])
-
+useEffect(() => {
+  localStorage.setItem('dark-mode', darkMode)
+}, [darkMode])
   // NEW
   const filteredExpenses = expenses
   .filter((expense) => {
@@ -223,12 +227,19 @@ const totalEntries = expenses.length
     }
   }
   return (
-    <main className="app-shell">
+    <main className={darkMode ? "app-shell dark" : "app-shell"}>
       <header className="app-header">
+
         <div>
           <p className="eyebrow">Expense Tracker</p>
           <h1>Track your spending in one place</h1>
         </div>
+        <button
+  className="theme-toggle"
+  onClick={() => setDarkMode(!darkMode)}
+>
+  {darkMode ? " Light Mode" : " Dark Mode"}
+</button>
       </header>
 <IncomeInput
   monthlyIncome={monthlyIncome}
