@@ -1,3 +1,5 @@
+import SortBar from './components/SortBar'
+import SmartInsights from './components/SmartInsights'
 import AnalyticsCards from './components/AnalyticsCards'
 import BudgetProgress from './components/BudgetProgress'
 import ExpenseChart from './components/ExpenseChart'
@@ -55,12 +57,14 @@ function App() {
   // NEW
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
+  const [sortBy, setSortBy] = useState('newest')
 
 const [monthlyIncome, setMonthlyIncome] = useState(() => {
   if (typeof window === 'undefined') return 5000
 
   const savedIncome = localStorage.getItem('monthly-income')
   return savedIncome ? Number(savedIncome) : 5000
+
 })
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses))
@@ -70,17 +74,33 @@ const [monthlyIncome, setMonthlyIncome] = useState(() => {
 }, [monthlyIncome])
 
   // NEW
-  const filteredExpenses = expenses.filter((expense) => {
-  const matchesSearch = expense.description
-    .toLowerCase()
-    .includes(searchTerm.toLowerCase())
+  const filteredExpenses = expenses
+  .filter((expense) => {
+    const matchesSearch = expense.description
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
 
-  const matchesCategory =
-    selectedCategory === 'All' ||
-    expense.category === selectedCategory
+    const matchesCategory =
+      selectedCategory === 'All' ||
+      expense.category === selectedCategory
 
-  return matchesSearch && matchesCategory
-})
+    return matchesSearch && matchesCategory
+  })
+  .sort((a, b) => {
+    if (sortBy === 'highest') {
+      return Number(b.amount) - Number(a.amount)
+    }
+
+    if (sortBy === 'lowest') {
+      return Number(a.amount) - Number(b.amount)
+    }
+
+    if (sortBy === 'oldest') {
+      return new Date(a.date) - new Date(b.date)
+    }
+
+    return new Date(b.date) - new Date(a.date)
+  })
 
 const totalExpenses = expenses.reduce(
   (sum, expense) => sum + Number(expense.amount),
@@ -200,7 +220,6 @@ const totalEntries = expenses.length
       resetForm()
     }
   }
-
   return (
     <main className="app-shell">
       <header className="app-header">
@@ -237,6 +256,12 @@ const totalEntries = expenses.length
 </>
   <ExpenseChart expenses={expenses} />
 
+<SmartInsights
+  expenses={expenses}
+  monthlyIncome={monthlyIncome}
+  totalExpenses={totalExpenses}
+  balance={balance}
+/>
           <ExpenseForm
             formData={formData}
             errors={errors}
@@ -255,6 +280,11 @@ const totalEntries = expenses.length
   selectedCategory={selectedCategory}
   setSelectedCategory={setSelectedCategory}
 />
+<SortBar
+  sortBy={sortBy}
+  setSortBy={setSortBy}
+/>
+
 
 <ExpenseList
   expenses={filteredExpenses}
