@@ -113,8 +113,8 @@ const totalEntries = expenses.length
   const validateForm = (values) => {
     const nextErrors = {}
 
-    if (!values.description.trim()) {
-      nextErrors.description = 'Description is required.'
+    if (values.description.trim().length < 3) {
+      nextErrors.description = ' Description must contain at least 3 characters.'
     }
 
     if (!values.amount) {
@@ -122,8 +122,8 @@ const totalEntries = expenses.length
     } else {
       const amountValue = Number(values.amount)
 
-      if (Number.isNaN(amountValue) || amountValue <= 0) {
-        nextErrors.amount = 'Amount must be a positive number.'
+      if ( Number.isNaN(amountValue) ||amountValue <= 0 || amountValue > 1000000) {
+        nextErrors.amount ='Amount must be between 1 and 1,000,000.'
       }
     }
 
@@ -131,9 +131,11 @@ const totalEntries = expenses.length
       nextErrors.category = 'Category is required.'
     }
 
-    if (!values.date) {
-      nextErrors.date = 'Date is required.'
-    }
+  if (!values.date) {
+  nextErrors.date = 'Date is required.'
+} else if (new Date(values.date) > new Date()) {
+  nextErrors.date = 'Please choose a valid past or current date.'
+}
 
     return nextErrors
   }

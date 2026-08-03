@@ -78,6 +78,7 @@ function ExpenseForm({ formData, errors, onChange, onSubmit, isEditing, onCancel
           name="date"
           value={formData.date}
           onChange={onChange}
+          max={new Date().toISOString().split('T')[0]}
           aria-invalid={Boolean(errors.date)}
           aria-describedby={errors.date ? 'date-error' : undefined}
         />
