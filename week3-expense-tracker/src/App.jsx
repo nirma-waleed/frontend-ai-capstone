@@ -1,3 +1,6 @@
+import AnalyticsCards from './components/AnalyticsCards'
+import BudgetProgress from './components/BudgetProgress'
+import ExpenseChart from './components/ExpenseChart'
 import IncomeInput from './components/IncomeInput'
 import FilterBar from './components/FilterBar'
 import { useEffect, useState } from 'react'
@@ -215,12 +218,24 @@ const totalEntries = expenses.length
         aria-label="Expense dashboard"
       >
         <div className="dashboard-main">
-          <SummaryCard
-  monthlyIncome={monthlyIncome}
-  totalExpenses={totalExpenses}
-  balance={balance}
-  totalEntries={totalEntries}
+          <>
+  <SummaryCard
+    monthlyIncome={monthlyIncome}
+    totalExpenses={totalExpenses}
+    balance={balance}
+    totalEntries={totalEntries}
+  />
+
+  <BudgetProgress
+    monthlyIncome={monthlyIncome}
+    totalExpenses={totalExpenses}
+  />
+  <AnalyticsCards
+  expenses={expenses}
 />
+
+</>
+  <ExpenseChart expenses={expenses} />
 
           <ExpenseForm
             formData={formData}
