@@ -81,6 +81,8 @@ const [monthlyIncome, setMonthlyIncome] = useState(() => {
 useEffect(() => {
   localStorage.setItem('dark-mode', darkMode)
 }, [darkMode])
+const [showDeleteModal, setShowDeleteModal] = useState(false)
+const [deleteId, setDeleteId] = useState(null)
   // NEW
   const filteredExpenses = expenses
   .filter((expense) => {
@@ -224,16 +226,27 @@ if (editingId) {
 
     setErrors({})
   }
+const handleDeleteExpense = (id) => {
+  setDeleteId(id)
+  setShowDeleteModal(true)
+}
+const confirmDelete = () => {
+  setExpenses((prev) =>
+    prev.filter((expense) => expense.id !== deleteId)
+  )
 
-  const handleDeleteExpense = (id) => {
-    setExpenses((previous) =>
-      previous.filter((expense) => expense.id !== id)
-    )
-toast.error("Expense deleted.")
-    if (editingId === id) {
-      resetForm()
-    }
-  }
+  toast.error("Expense deleted.")
+
+  setShowDeleteModal(false)
+  setDeleteId(null)
+}
+
+
+const cancelDelete = () => {
+  setShowDeleteModal(false)
+  setDeleteId(null)
+}
+  
   return (
     <main className={darkMode ? "app-shell dark" : "app-shell"}>
       <header className="app-header">
@@ -322,7 +335,37 @@ toast.error("Expense deleted.")
   closeOnClick
   pauseOnHover
   theme="colored"
-/>  
+/>
+  {showDeleteModal && (
+  <div className="modal-overlay">
+
+    <div className="modal-box">
+
+      <h2>Delete Expense</h2>
+
+      <p>
+        Are you sure you want to delete this expense?
+      </p>
+
+      <div className="modal-actions">
+
+        <button onClick={cancelDelete}>
+          Cancel
+        </button>
+
+        <button 
+          className="delete-btn"
+          onClick={confirmDelete}
+        >
+          Delete
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+)}
  <Footer/>
     </main>
   )
