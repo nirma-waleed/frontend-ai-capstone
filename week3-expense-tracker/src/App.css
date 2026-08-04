@@ -625,3 +625,28 @@ button:focus-visible {
     width: 100%;
   }
 }
+.footer {
+  margin-top: 40px;
+  padding: 25px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  color: #666;
+}
+
+.dark .footer {
+  border-color: #374151;
+  color: #d1d5db;
+}
+button {
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
+}

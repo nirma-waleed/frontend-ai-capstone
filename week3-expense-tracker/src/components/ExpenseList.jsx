@@ -9,7 +9,7 @@ function ExpenseList({ expenses, onDelete, onEdit }) {
       </div>
 
       {expenses.length === 0 ? (
-        <p className="empty-state">No expenses yet. Add your first one above.</p>
+        <p className="empty-state"> No expenses found. <br />Add your first expense to start tracking your spending.</p>
       ) : (
         <ul className="expense-list">
           {expenses.map((expense) => (

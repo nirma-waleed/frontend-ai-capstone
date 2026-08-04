@@ -1,3 +1,4 @@
+import Footer from "./components/Footer"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import ExportCSV from "./components/ExportCSV"
@@ -321,7 +322,8 @@ toast.error("Expense deleted.")
   closeOnClick
   pauseOnHover
   theme="colored"
-/>   
+/>  
+ <Footer/>
     </main>
   )
 }
