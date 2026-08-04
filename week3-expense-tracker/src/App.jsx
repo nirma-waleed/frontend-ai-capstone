@@ -1,3 +1,4 @@
+import ExportCSV from "./components/ExportCSV"
 import SortBar from './components/SortBar'
 import SmartInsights from './components/SmartInsights'
 import AnalyticsCards from './components/AnalyticsCards'
@@ -297,7 +298,7 @@ const totalEntries = expenses.length
   sortBy={sortBy}
   setSortBy={setSortBy}
 />
-
+<ExportCSV expenses={filteredExpenses} />
 
 <ExpenseList
   expenses={filteredExpenses}
