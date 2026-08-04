@@ -191,20 +191,22 @@ const totalEntries = expenses.length
     }
 
     const nextExpense = buildExpense(editingId ?? Date.now())
+if (editingId) {
+  setExpenses((previous) =>
+    previous.map((expense) =>
+      expense.id === editingId
+        ? { ...expense, ...nextExpense }
+        : expense
+    )
+  )
 
-    if (editingId) {
-      setExpenses((previous) =>
-        previous.map((expense) =>
-          expense.id === editingId
-            ? { ...expense, ...nextExpense }
-            : expense
-        )
-      )
-      toast.success("Expense added successfully!")
-    } else {
-      setExpenses((previous) => [nextExpense, ...previous])
-      toast.info("Expense updated successfully!")
-    }
+  toast.success("Expense updated successfully!")
+} else {
+  setExpenses((previous) => [nextExpense, ...previous])
+
+  toast.success("Expense added successfully!")
+}
+    
 
     resetForm()
   }
