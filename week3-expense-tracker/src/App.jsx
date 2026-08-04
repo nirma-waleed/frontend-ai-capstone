@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 import ExportCSV from "./components/ExportCSV"
 import SortBar from './components/SortBar'
 import SmartInsights from './components/SmartInsights'
@@ -198,8 +200,10 @@ const totalEntries = expenses.length
             : expense
         )
       )
+      toast.success("Expense added successfully!")
     } else {
       setExpenses((previous) => [nextExpense, ...previous])
+      toast.info("Expense updated successfully!")
     }
 
     resetForm()
@@ -222,7 +226,7 @@ const totalEntries = expenses.length
     setExpenses((previous) =>
       previous.filter((expense) => expense.id !== id)
     )
-
+toast.error("Expense deleted.")
     if (editingId === id) {
       resetForm()
     }
@@ -307,6 +311,15 @@ const totalEntries = expenses.length
 />
     
       </section>
+   <ToastContainer
+  position="top-center"
+  autoClose={3000}
+  hideProgressBar={false}
+  newestOnTop
+  closeOnClick
+  pauseOnHover
+  theme="colored"
+/>   
     </main>
   )
 }

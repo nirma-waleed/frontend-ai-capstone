@@ -547,3 +547,39 @@ button:focus-visible {
 .export-btn:hover {
   background: #1d4ed8;
 }
+/* Center Toast Popup */
+.Toastify__toast-container {
+  width: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Big Toast Box */
+.Toastify__toast {
+  width: 450px !important;
+  min-height: 120px;
+  padding: 30px !important;
+  font-size: 22px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+}
+
+/* Toast message text */
+.Toastify__toast-body {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* Success popup color */
+.Toastify__toast--success {
+  background: #16a34a !important;
+  color: white !important;
+}
+
+/* Error popup color */
+.Toastify__toast--error {
+  background: #dc2626 !important;
+  color: white !important;
+}
