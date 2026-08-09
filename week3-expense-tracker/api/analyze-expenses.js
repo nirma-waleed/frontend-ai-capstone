@@ -50,24 +50,35 @@ Include:
 4. Two practical suggestions to improve their spending.
 5. One short savings recommendation.
 
-Do not invent expenses or financial information that is not provided.
+Do not invent expenses or financial information.
 Base every observation only on the provided expense data.
+
 Keep the response under 180 words.
 `
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-3.6-flash",
       contents: prompt,
     })
 
+    const analysis = response.text
+
+    if (!analysis) {
+      return res.status(500).json({
+        error: "Gemini returned an empty response.",
+      })
+    }
+
     return res.status(200).json({
-      analysis: response.text,
+      analysis,
     })
   } catch (error) {
     console.error("Gemini API error:", error)
 
     return res.status(500).json({
-      error: "Unable to generate AI analysis.",
+      error:
+        error?.message || "Unable to generate AI analysis.",
     })
   }
 }
+

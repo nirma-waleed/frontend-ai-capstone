@@ -1,3 +1,4 @@
+import AIAnalysis from "./components/AIAnalysis"
 import Footer from "./components/Footer"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
@@ -17,12 +18,7 @@ import SummaryCard from './components/SummaryCard'
 import SearchBar from './components/SearchBar'
 
 const STORAGE_KEY = 'expense-tracker-data'
-
-const starterExpenses = [
-  { id: 1, description: 'Groceries', amount: '42.50', category: 'Food', date: '2026-07-20' },
-  { id: 2, description: 'Train ticket', amount: '8.25', category: 'Transport', date: '2026-07-21' },
-]
-
+const starterExpenses = []
 const initialFormState = {
   description: '',
   amount: '',
@@ -296,6 +292,7 @@ const cancelDelete = () => {
   totalExpenses={totalExpenses}
   balance={balance}
 />
+<AIAnalysis expenses={expenses} />
           <ExpenseForm
             formData={formData}
             errors={errors}
