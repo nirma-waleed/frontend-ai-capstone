@@ -62,10 +62,10 @@ const [darkMode, setDarkMode] = useState(() => {
   return localStorage.getItem('dark-mode') === 'true'
 })
 const [monthlyIncome, setMonthlyIncome] = useState(() => {
-  if (typeof window === 'undefined') return 5000
+  if (typeof window === 'undefined') return 0
 
   const savedIncome = localStorage.getItem('monthly-income')
-  return savedIncome ? Number(savedIncome) : 5000
+  return savedIncome ? Number(savedIncome) : 0
 
 })
   useEffect(() => {
@@ -113,8 +113,8 @@ const totalExpenses = expenses.reduce(
   0
 )
 
-const balance = monthlyIncome - totalExpenses
 
+const balance = Math.max(monthlyIncome - totalExpenses, 0)
 const totalEntries = expenses.length
   const validateForm = (values) => {
     const nextErrors = {}
@@ -181,7 +181,11 @@ const totalEntries = expenses.length
 
   const handleSubmit = (event) => {
     event.preventDefault()
-
+    
+if (monthlyIncome <= 0) {
+  toast.error("Please enter your monthly income first.")
+  return
+}
     const validationErrors = validateForm(formData)
 
     if (Object.keys(validationErrors).length > 0) {
@@ -190,6 +194,21 @@ const totalEntries = expenses.length
     }
 
     const nextExpense = buildExpense(editingId ?? Date.now())
+if (!editingId) {
+  const newExpenseAmount = Number(nextExpense.amount)
+  const remainingBalance = monthlyIncome - totalExpenses
+
+  if (newExpenseAmount > remainingBalance) {
+    toast.error(
+      `Expense cannot be added. You only have $${Math.max(
+        remainingBalance,
+        0
+      ).toFixed(2)} remaining.`
+    )
+    return
+  }
+}
+
 if (editingId) {
   setExpenses((previous) =>
     previous.map((expense) =>

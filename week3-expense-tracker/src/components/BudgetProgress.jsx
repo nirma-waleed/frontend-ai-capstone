@@ -1,7 +1,7 @@
 function BudgetProgress({ monthlyIncome, totalExpenses }) {
   const percentage =
     monthlyIncome > 0
-      ? Math.min((totalExpenses / monthlyIncome) * 100, 100)
+      ? (totalExpenses / monthlyIncome) * 100
       : 0
 
   let message = 'Great! You are within your monthly budget.'
@@ -12,20 +12,25 @@ function BudgetProgress({ monthlyIncome, totalExpenses }) {
     color = '#f59e0b'
   }
 
-  if (percentage >= 80) {
+  if (percentage >= 80 && percentage < 100) {
     message = 'Warning! You are close to your monthly budget.'
     color = '#ef4444'
   }
 
+  if (percentage >= 100) {
+    message = 'Your expenses have exceeded your monthly income.'
+    color = '#dc2626'
+  }
+
   return (
-    <section className="budget-card">
+    <section className="budget-progress">
       <h2>Budget Usage</h2>
 
       <div className="progress-bar">
         <div
           className="progress-fill"
           style={{
-            width: `${percentage}%`,
+            width: `${Math.min(percentage, 100)}%`,
             backgroundColor: color,
           }}
         ></div>

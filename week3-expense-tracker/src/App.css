@@ -3,9 +3,15 @@
   max-width: 1120px;
   margin: 0 auto;
   padding: 2.5rem 1.25rem 3rem;
+  box-sizing: border-box;
+  color: #0f172a;
 }
 
 .app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
   margin-bottom: 1.5rem;
 }
 
@@ -15,7 +21,7 @@
   font-size: 0.8rem;
   font-weight: 700;
   color: #6366f1;
-  margin-bottom: 0.6rem;
+  margin: 0 0 0.6rem;
 }
 
 .app-header h1 {
@@ -23,6 +29,11 @@
   font-size: clamp(1.9rem, 3vw, 2.7rem);
   line-height: 1.15;
 }
+
+
+/* =========================================================
+   DASHBOARD LAYOUT
+   ========================================================= */
 
 .dashboard {
   display: grid;
@@ -34,6 +45,11 @@
   gap: 1.25rem;
 }
 
+
+/* =========================================================
+   COMMON CARDS
+   ========================================================= */
+
 .summary-card,
 .expense-form,
 .expense-list-section {
@@ -44,8 +60,17 @@
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
 }
 
+
+/* =========================================================
+   SUMMARY CARD
+   ========================================================= */
+
 .summary-card {
-  background: linear-gradient(135deg, #eef2ff 0%, #f8fafc 100%);
+  background: linear-gradient(
+    135deg,
+    #eef2ff 0%,
+    #f8fafc 100%
+  );
 }
 
 .summary-stats {
@@ -66,6 +91,46 @@
   font-weight: 700;
   color: #0f172a;
 }
+
+
+/* =========================================================
+   SUMMARY BOXES
+   ========================================================= */
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.summary-box {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  border: 1px solid #e2e8f0;
+}
+
+.summary-box h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.summary-box p {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+
+/* =========================================================
+   EXPENSE FORM
+   ========================================================= */
 
 .expense-form {
   display: grid;
@@ -99,24 +164,30 @@
 
 .field input,
 .field select {
+  width: 100%;
+  box-sizing: border-box;
   border: 1px solid #cbd5e1;
   border-radius: 0.85rem;
   padding: 0.8rem 0.9rem;
   background: #f8fafc;
   color: #0f172a;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .field input:focus,
 .field select:focus,
-button:focus-visible {
+button:focus-visible,
+input:focus,
+select:focus {
   outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
-.field input[aria-invalid='true'],
-.field select[aria-invalid='true'] {
+.field input[aria-invalid="true"],
+.field select[aria-invalid="true"] {
   border-color: #dc2626;
 }
 
@@ -133,6 +204,11 @@ button:focus-visible {
   margin-top: 0.2rem;
 }
 
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
 .expense-form button,
 .delete-btn,
 .edit-btn,
@@ -142,18 +218,27 @@ button:focus-visible {
   padding: 0.78rem 1rem;
   cursor: pointer;
   font-weight: 700;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .expense-form button:hover,
 .delete-btn:hover,
 .edit-btn:hover,
-.secondary-btn:hover {
-  transform: translateY(-1px);
+.secondary-btn:hover,
+.export-btn:hover,
+.theme-toggle:hover {
+  transform: translateY(-2px);
 }
 
 .expense-form button {
-  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  background: linear-gradient(
+    135deg,
+    #4f46e5 0%,
+    #4338ca 100%
+  );
   color: white;
   box-shadow: 0 8px 20px rgba(79, 70, 229, 0.2);
 }
@@ -167,6 +252,96 @@ button:focus-visible {
   background: #dbeafe;
   color: #1d4ed8;
 }
+
+.delete-btn {
+  background: #dc2626;
+  color: white;
+}
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+.search-bar {
+  margin: 1.5rem 0;
+}
+
+.search-bar label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.search-bar input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  background: white;
+  color: #0f172a;
+}
+
+
+/* =========================================================
+   FILTER
+   ========================================================= */
+
+.filter-bar {
+  margin-bottom: 1.5rem;
+}
+
+.filter-bar label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.filter-bar select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  background: white;
+  color: #0f172a;
+}
+
+
+/* =========================================================
+   SORT
+   ========================================================= */
+
+.sort-bar {
+  margin: 20px 0;
+}
+
+.sort-bar label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.sort-bar select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: white;
+  color: #0f172a;
+}
+
+
+/* =========================================================
+   EXPENSE LIST
+   ========================================================= */
 
 .section-heading {
   display: flex;
@@ -243,152 +418,127 @@ button:focus-visible {
   color: #111827;
 }
 
-.delete-btn {
-  background: #fee2e2;
-  color: #b91c1c;
-}
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
 
 .empty-state {
   color: #64748b;
   padding: 1rem 0 0;
 }
 
-@media (min-width: 760px) {
-  .dashboard-main {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-    align-items: start;
-  }
-}
-
-@media (max-width: 759px) {
-  .app-shell {
-    padding: 1.25rem 1rem 2rem;
-  }
-
-  .expense-item,
-  .section-heading {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .expense-actions {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .form-actions,
-  .action-buttons {
-    width: 100%;
-  }
-
-  .action-buttons {
-    justify-content: flex-end;
-  }
-}
-.search-bar {
-  margin: 1.5rem 0;
-}
-
-.search-bar label {
+.empty-state strong {
   display: block;
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
+}
+
+.empty-state p {
+  margin: 0;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  color: #475569;
+  line-height: 1.6;
 }
 
-.search-bar input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 16px;
-}
-.filter-bar {
-  margin-bottom: 1.5rem;
-}
 
-.filter-bar label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
+/* =========================================================
+   MONTHLY INCOME
+   ========================================================= */
 
-.filter-bar select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 16px;
-}
-.summary-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.summary-box {
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-  text-align: center;
-}
-
-.summary-box h3 {
-  margin-bottom: 10px;
-  font-size: 18px;
-}
-
-.summary-box p {
-  font-size: 28px;
-  font-weight: bold;
-  color: #2563eb;
-}
 .income-input {
   background: white;
-  padding: 20px;
+  padding: 24px;
   border-radius: 12px;
-  margin-bottom: 20px;
-  box-shadow: 0 3px 10px rgba(0,0,0,.08);
+  margin-top: 30px;
+  margin-bottom: 32px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
 }
 
 .income-input label {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
 }
 
 .income-input input {
+  display: block;
   width: 100%;
-  padding: 12px;
+  max-width: 600px;
+  height: 50px;
+  padding: 12px 16px;
+  box-sizing: border-box;
   border-radius: 8px;
   border: 1px solid #d1d5db;
   font-size: 16px;
+  color: #1e293b;
+  background: white;
 }
+
+.income-input input::placeholder {
+  color: #64748b;
+  opacity: 1;
+}
+
+.income-input input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* =========================================================
+   CHART / EXPENSE BREAKDOWN
+   ========================================================= */
+
 .chart-section {
   margin: 30px 0;
   padding: 25px;
   background: #ffffff;
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
 }
 
 .chart-section h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin: 0 0 20px;
   color: #1f2937;
   font-size: 24px;
   font-weight: 700;
 }
+
+.breakdown-label {
+  color: #334155;
+  font-weight: 700;
+}
+
+.breakdown-item,
+.breakdown-item span {
+  color: #334155;
+}
+
+
+/* =========================================================
+   BUDGET
+   ========================================================= */
+
 .budget-card {
   margin: 25px 0;
   padding: 24px;
   background: white;
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
 }
 
 .budget-card h2 {
-  margin-bottom: 20px;
+  margin: 0 0 20px;
 }
 
 .progress-bar {
@@ -403,6 +553,12 @@ button:focus-visible {
   height: 100%;
   transition: width 0.5s ease;
 }
+
+
+/* =========================================================
+   ANALYTICS
+   ========================================================= */
+
 .analytics-section {
   margin: 30px 0;
 }
@@ -421,8 +577,9 @@ button:focus-visible {
   background: white;
   padding: 20px;
   border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.08);
-  transition: transform .2s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s ease;
 }
 
 .analytics-card:hover {
@@ -430,7 +587,7 @@ button:focus-visible {
 }
 
 .analytics-card h3 {
-  margin-bottom: 12px;
+  margin: 0 0 12px;
   color: #2563eb;
 }
 
@@ -441,17 +598,25 @@ button:focus-visible {
 
 .analytics-card strong {
   font-size: 24px;
+  color: #111827;
 }
+
+
+/* =========================================================
+   SMART INSIGHTS
+   ========================================================= */
+
 .insights-card {
   margin-top: 30px;
   padding: 24px;
   background: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
 }
 
 .insights-card h2 {
-  margin-bottom: 18px;
+  margin: 0 0 18px;
   color: #2563eb;
 }
 
@@ -462,75 +627,85 @@ button:focus-visible {
 .insights-card li {
   margin-bottom: 12px;
   line-height: 1.7;
-}
-.sort-bar {
-  margin: 20px 0;
+  color: #334155;
 }
 
-.sort-bar label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
+
+/* =========================================================
+   AI ANALYSIS
+   ========================================================= */
+
+.ai-analysis {
+  margin-top: 30px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
 }
 
-.sort-bar select {
-  width: 100%;
-  padding: 12px;
+.ai-analysis h2 {
+  margin: 0 0 18px;
+  color: #2563eb;
+}
+
+.ai-analysis > p {
+  color: #475569;
+  line-height: 1.6;
+}
+
+.ai-analysis button {
+  background: #2563eb;
+  color: #ffffff;
+  border: 1px solid #2563eb;
   border-radius: 10px;
-  border: 1px solid #d1d5db;
+  padding: 12px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
-
-.theme-toggle:hover {
+.ai-analysis button:hover {
   background: #1d4ed8;
 }
 
-.dark {
-  background: #111827;
-  color: white;
-  min-height: 100vh;
+.ai-analysis button:disabled {
+  background: #64748b;
+  color: #e2e8f0;
+  cursor: not-allowed;
+  transform: none;
 }
 
-.dark .summary-card,
-.dark .expense-form,
-.dark .expense-list-section,
-.dark .budget-progress,
-.dark .analytics-card,
-.dark .smart-insights,
-.dark .income-input,
-.dark .search-bar,
-.dark .filter-bar,
-.dark .sort-bar {
-  background: #1f2937;
-  color: white;
-}
-
-.dark input,
-.dark select {
-  background: #374151;
-  color: white;
-  border: 1px solid #4b5563;
-}
-
-.dark button {
-  color: white;
-}
-
-.app-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-}
-
-.theme-toggle {
-  padding: 10px 16px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
+.ai-analysis-error {
+  color: #dc2626;
   font-weight: 600;
-  white-space: nowrap;
 }
+
+.ai-analysis-result {
+  margin-top: 20px;
+  padding: 18px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.ai-analysis-result h3 {
+  margin-top: 0;
+  color: #1e293b;
+}
+
+.ai-analysis-result p {
+  color: #334155;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   EXPORT BUTTON
+   ========================================================= */
+
 .export-btn {
   margin: 18px 0;
   padding: 12px 18px;
@@ -541,13 +716,43 @@ button:focus-visible {
   cursor: pointer;
   font-size: 15px;
   font-weight: 600;
-  transition: 0.3s;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .export-btn:hover {
   background: #1d4ed8;
 }
-/* Center Toast Popup */
+
+
+/* =========================================================
+   THEME TOGGLE
+   ========================================================= */
+
+.theme-toggle {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: #1d4ed8;
+}
+
+
+/* =========================================================
+   TOAST NOTIFICATIONS
+   ========================================================= */
+
 .Toastify__toast-container {
   width: auto;
   top: 50%;
@@ -555,7 +760,6 @@ button:focus-visible {
   transform: translate(-50%, -50%);
 }
 
-/* Big Toast Box */
 .Toastify__toast {
   width: 450px !important;
   min-height: 120px;
@@ -566,94 +770,30 @@ button:focus-visible {
   align-items: center;
 }
 
-/* Toast message text */
 .Toastify__toast-body {
   font-size: 22px;
   font-weight: 600;
 }
 
-/* Success popup color */
 .Toastify__toast--success {
   background: #16a34a !important;
   color: white !important;
 }
 
-/* Error popup color */
 .Toastify__toast--error {
   background: #dc2626 !important;
   color: white !important;
 }
 
 
-@media (max-width: 992px) {
-  .dashboard-main {
-    grid-template-columns: 1fr;
-  }
+/* =========================================================
+   MODAL
+   ========================================================= */
 
-  .summary-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 768px) {
-  .summary-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .dashboard-analytics {
-    grid-template-columns: 1fr;
-  }
-
-  .expense-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .expense-actions {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .action-buttons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .theme-toggle,
-  .export-btn {
-    width: 100%;
-  }
-}
-.footer {
-  margin-top: 40px;
-  padding: 25px;
-  text-align: center;
-  border-top: 1px solid #ddd;
-  color: #666;
-}
-
-.dark .footer {
-  border-color: #374151;
-  color: #d1d5db;
-}
-button {
-  transition: all 0.3s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
-}
-input:focus,
-select:focus {
-  outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
-}
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -663,9 +803,14 @@ select:focus {
 .modal-box {
   background: white;
   padding: 25px;
-  width: 350px;
+  width: min(350px, calc(100% - 40px));
   border-radius: 12px;
   text-align: center;
+  box-sizing: border-box;
+}
+
+.modal-box h2 {
+  margin-top: 0;
 }
 
 .modal-actions {
@@ -680,9 +825,433 @@ select:focus {
   border-radius: 8px;
   border: none;
   cursor: pointer;
+  font-weight: 700;
 }
 
-.delete-btn {
-  background: crimson;
-  color: white;
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+  margin-top: 40px;
+  padding: 25px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  color: #666;
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+.app-shell.dark {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+/* Main headings and text */
+
+.app-shell.dark h1,
+.app-shell.dark h2,
+.app-shell.dark h3 {
+  color: #ffffff;
+}
+
+.app-shell.dark p,
+.app-shell.dark span,
+.app-shell.dark label {
+  color: #f8fafc;
+}
+
+
+/* Cards */
+
+.app-shell.dark .summary-card,
+.app-shell.dark .summary-box,
+.app-shell.dark .analytics-card,
+.app-shell.dark .budget-card,
+.app-shell.dark .chart-section,
+.app-shell.dark .insights-card,
+.app-shell.dark .income-input,
+.app-shell.dark .expense-form,
+.app-shell.dark .search-bar,
+.app-shell.dark .filter-bar,
+.app-shell.dark .sort-bar,
+.app-shell.dark .expense-list-section,
+.app-shell.dark .ai-analysis {
+  background: #1e293b;
+  color: #f8fafc;
+  border-color: #475569;
+}
+
+
+/* Summary boxes */
+
+.app-shell.dark .summary-box {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.app-shell.dark .summary-box h3 {
+  color: #cbd5e1;
+  font-weight: 700;
+}
+
+.app-shell.dark .summary-box p {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+
+/* Summary card */
+
+.app-shell.dark .summary-card {
+  background: #1e293b;
+}
+
+.app-shell.dark .summary-label {
+  color: #cbd5e1;
+}
+
+.app-shell.dark .summary-value {
+  color: #ffffff;
+}
+
+
+/* Income */
+
+.app-shell.dark .income-input label {
+  color: #ffffff;
+}
+
+.app-shell.dark .income-input input {
+  background: #334155;
+  color: #ffffff;
+  border-color: #64748b;
+}
+
+
+/* Inputs and selects */
+
+.app-shell.dark input,
+.app-shell.dark select,
+.app-shell.dark textarea {
+  background: #334155;
+  color: #ffffff;
+  border: 1px solid #64748b;
+}
+
+.app-shell.dark input::placeholder,
+.app-shell.dark textarea::placeholder {
+  color: #cbd5e1;
+  opacity: 1;
+}
+
+.app-shell.dark select option {
+  background: #1e293b;
+  color: #ffffff;
+}
+
+
+/* Search / Filter / Sort headings */
+
+.app-shell.dark .search-bar label,
+.app-shell.dark .filter-bar label,
+.app-shell.dark .sort-bar label {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+
+/* Expense items */
+
+.app-shell.dark .expense-item {
+  background: #334155;
+  color: #f8fafc;
+  border-color: #475569;
+}
+
+.app-shell.dark .expense-item:hover {
+  background: #475569;
+}
+
+.app-shell.dark .expense-title,
+.app-shell.dark .expense-item h3 {
+  color: #ffffff;
+}
+
+.app-shell.dark .expense-meta,
+.app-shell.dark .expense-item p {
+  color: #cbd5e1;
+}
+
+.app-shell.dark .expense-amount,
+.app-shell.dark .expense-item .amount {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.app-shell.dark .expense-item .category,
+.app-shell.dark .expense-item .date {
+  color: #cbd5e1;
+}
+
+
+/* Edit and Delete buttons */
+
+.app-shell.dark .edit-btn,
+.app-shell.dark .edit-button {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.app-shell.dark .delete-btn,
+.app-shell.dark .delete-button {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+
+/* Empty state */
+
+.app-shell.dark .empty-state {
+  color: #cbd5e1;
+}
+
+.app-shell.dark .empty-state strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.app-shell.dark .empty-state p {
+  color: #cbd5e1;
+}
+
+
+/* Expense breakdown */
+
+.app-shell.dark .chart-section h2 {
+  color: #ffffff;
+}
+
+.app-shell.dark .breakdown-label,
+.app-shell.dark .breakdown-item,
+.app-shell.dark .breakdown-item span,
+.app-shell.dark .chart-section span {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+
+/* Budget */
+
+.app-shell.dark .budget-card h2 {
+  color: #ffffff;
+}
+
+.app-shell.dark .progress-bar {
+  background: #475569;
+}
+
+
+/* Analytics */
+
+.app-shell.dark .analytics-card h3 {
+  color: #60a5fa;
+}
+
+.app-shell.dark .analytics-card p,
+.app-shell.dark .analytics-card strong {
+  color: #ffffff;
+}
+
+
+/* Smart insights */
+
+.app-shell.dark .insights-card h2 {
+  color: #60a5fa;
+}
+
+.app-shell.dark .insights-card li {
+  color: #e2e8f0;
+}
+
+
+/* AI analysis */
+
+.app-shell.dark .ai-analysis h2 {
+  color: #ffffff;
+}
+
+.app-shell.dark .ai-analysis > p {
+  color: #cbd5e1;
+}
+
+.app-shell.dark .ai-analysis button {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+.app-shell.dark .ai-analysis button:hover {
+  background: #1d4ed8;
+}
+
+.app-shell.dark .ai-analysis button:disabled {
+  background: #64748b;
+  color: #e2e8f0;
+}
+
+.app-shell.dark .ai-analysis-result {
+  background: #334155;
+  border-color: #64748b;
+}
+
+.app-shell.dark .ai-analysis-result h3 {
+  color: #ffffff;
+}
+
+.app-shell.dark .ai-analysis-result p,
+.app-shell.dark .ai-analysis li {
+  color: #e2e8f0;
+}
+
+
+/* Theme toggle */
+
+.app-shell.dark .theme-toggle {
+  background: #334155;
+  color: #ffffff;
+  border: 1px solid #64748b;
+}
+
+.app-shell.dark .theme-toggle:hover {
+  background: #475569;
+}
+
+
+/* Footer */
+
+.app-shell.dark .footer,
+.app-shell.dark footer {
+  border-color: #374151;
+  color: #cbd5e1;
+}
+
+
+/* Modal */
+
+.app-shell.dark .modal-box {
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #475569;
+}
+
+.app-shell.dark .modal-box h2,
+.app-shell.dark .modal-box p {
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (min-width: 760px) {
+  .dashboard-main {
+    grid-template-columns:
+      minmax(0, 0.95fr)
+      minmax(0, 1.05fr);
+    align-items: start;
+  }
+}
+
+@media (max-width: 992px) {
+  .dashboard-main {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .app-shell {
+    padding: 1.25rem 1rem 2rem;
+  }
+
+  .app-header {
+    align-items: flex-start;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-analytics {
+    grid-template-columns: 1fr;
+  }
+
+  .expense-item,
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .expense-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .form-actions,
+  .action-buttons {
+    width: 100%;
+  }
+
+  .action-buttons {
+    justify-content: flex-end;
+  }
+
+  .theme-toggle,
+  .export-btn {
+    width: 100%;
+  }
+
+  .Toastify__toast {
+    width: min(360px, calc(100vw - 30px)) !important;
+    font-size: 18px;
+    padding: 20px !important;
+  }
+
+  .Toastify__toast-body {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 759px) {
+  .app-header {
+    flex-direction: column;
+  }
+
+  .expense-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .action-buttons {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .form-actions {
+    width: 100%;
+  }
 }

@@ -1,17 +1,18 @@
 function IncomeInput({ monthlyIncome, setMonthlyIncome }) {
   return (
     <section className="income-input">
-      <label htmlFor="income">
-        <strong>Monthly Income</strong>
-      </label>
+      <label htmlFor="income">Monthly Income</label>
 
       <input
         id="income"
         type="number"
         min="0"
-        value={monthlyIncome}
+        value={monthlyIncome === 0 ? '' : monthlyIncome}
+        placeholder="Enter your monthly income"
         onChange={(e) =>
-          setMonthlyIncome(Number(e.target.value))
+          setMonthlyIncome(
+            e.target.value === '' ? 0 : Number(e.target.value)
+          )
         }
       />
     </section>
