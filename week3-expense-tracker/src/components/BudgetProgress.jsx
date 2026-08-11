@@ -22,15 +22,24 @@ function BudgetProgress({ monthlyIncome, totalExpenses }) {
     color = '#dc2626'
   }
 
-  return (
-    <section className="budget-progress">
-      <h2>Budget Usage</h2>
+  const displayPercentage = Math.min(percentage, 100)
 
-      <div className="progress-bar">
+  return (
+    <section className="budget-progress" aria-labelledby="budget-title">
+      <h2 id="budget-title">Budget Usage</h2>
+
+      <div
+        className="progress-bar"
+        role="progressbar"
+        aria-valuenow={displayPercentage}
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-label="Monthly budget usage"
+      >
         <div
           className="progress-fill"
           style={{
-            width: `${Math.min(percentage, 100)}%`,
+            width: `${displayPercentage}%`,
             backgroundColor: color,
           }}
         ></div>

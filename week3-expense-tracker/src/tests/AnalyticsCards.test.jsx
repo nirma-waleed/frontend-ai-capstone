@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { test, expect } from "vitest";
 import AnalyticsCards from "../components/AnalyticsCards";
 
 test("renders analytics section", () => {

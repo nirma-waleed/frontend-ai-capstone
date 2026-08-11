@@ -10,23 +10,31 @@ function SummaryCard({
 
       <div className="summary-grid">
         <div className="summary-box">
-          <h3> Monthly Income</h3>
-          <p>${monthlyIncome.toFixed(2)}</p>
+          <h3 id="monthly-income-label">Monthly Income</h3>
+          <p aria-labelledby="monthly-income-label">
+            ${monthlyIncome.toFixed(2)}
+          </p>
         </div>
 
         <div className="summary-box">
-          <h3> Total Expenses</h3>
-          <p>${totalExpenses.toFixed(2)}</p>
+          <h3 id="total-expenses-label">Total Expenses</h3>
+          <p aria-labelledby="total-expenses-label">
+            ${totalExpenses.toFixed(2)}
+          </p>
         </div>
 
         <div className="summary-box">
-          <h3> Remaining Balance</h3>
-          <p>${balance.toFixed(2)}</p>
+          <h3 id="remaining-balance-label">Remaining Balance</h3>
+          <p aria-labelledby="remaining-balance-label">
+            ${balance.toFixed(2)}
+          </p>
         </div>
 
         <div className="summary-box">
-          <h3> Total Entries</h3>
-          <p>{totalEntries}</p>
+          <h3 id="total-entries-label">Total Entries</h3>
+          <p aria-labelledby="total-entries-label">
+            {totalEntries}
+          </p>
         </div>
       </div>
     </section>

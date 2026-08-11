@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
+import { test, expect } from "vitest";
 import ExpenseForm from "../components/ExpenseForm";
-
 test("renders Add Expense button", () => {
   render(
     <ExpenseForm
