@@ -1,228 +1,158 @@
-# Expense Tracker
+# AI Expense Tracker
 
-**Expense Tracker** is a modern and responsive web application designed to make personal expense management simple and organized. Built with **React and Vite**, it allows users to record, edit, delete, search, filter, sort, and export their expenses while keeping track of monthly income and budget usage.
+A production-ready, AI-enhanced expense tracking application built with React and Vite as part of the **FlyRank Frontend AI Engineering Capstone**.
 
-The dashboard provides useful financial insights through expense summaries, category breakdowns, budget progress, and spending analytics. It also includes an **AI-powered spending analysis feature using the Google Gemini API**, which provides personalized observations and practical suggestions based on the user's recorded expenses.
+## 🔗 Live Demo
 
-The application is designed with a clean interface, responsive layout, dark/light mode support, local data storage, form validation, and an easy-to-use dashboard experience.
+**Production:**
+https://frontend-ai-capstone-2eym.vercel.app/
 
-## Features
+**GitHub Repository:**
+https://github.com/nirma-waleed/frontend-ai-capstone/tree/capstone-ai-expense-tracker/week3-expense-tracker
 
-* Add new expenses
-* Edit existing expenses
-* Delete expenses with confirmation
-* Categorize expenses
-* Set monthly income
-* Track total expenses
-* Calculate remaining balance
-* Monitor total expense entries
-* Search expenses by description
-* Filter expenses by category
-* Sort expenses by date and amount
-* View dashboard analytics
-* View expense breakdown by category
-* Monitor monthly budget usage
-* Smart spending insights
-* AI-powered spending analysis using Gemini
-* Export expenses to CSV
-* Dark mode and light mode
-* Form validation
-* Responsive user interface
-* Local data persistence using browser `localStorage`
 
-## Dashboard
 
-The dashboard provides a quick overview of the user's financial activity.
+## 🎯 Purpose & Problem
 
-It displays:
+AI Expense Tracker helps individuals track their monthly income and expenses in one place, understand their spending patterns, monitor their remaining budget, and receive AI-generated spending insights. The application is designed for students, professionals, and anyone who wants a simple way to manage everyday expenses. I chose this project because expense management is a practical real-world problem, and adding AI allows the application to provide useful observations and suggestions rather than only storing expense records.
 
-* Monthly Income
-* Total Expenses
-* Remaining Balance
-* Total Entries
-* Budget Usage
-* Top Spending Category
-* Highest Expense
-* Average Expense
-* Latest Expense
-* Expense Breakdown
 
-## AI Spending Analysis
 
-The application includes an AI-powered spending analysis feature using the **Google Gemini API**.
+## 🎯 Problem It Solves
 
-After adding expenses, users can click **Analyze My Spending** to receive personalized observations and practical recommendations based on their expense data.
+Managing daily expenses manually can make it difficult to understand where money is being spent and whether spending is staying within a monthly budget.
 
-The AI analysis provides:
+The application provides:
 
-1. The main spending pattern
-2. The category with the highest spending
-3. An observation about spending habits
-4. Two practical suggestions for improving spending
-5. A short savings recommendation
+* Monthly income tracking
+* Expense recording
+* Category-based organization
+* Search and filtering
+* Budget usage monitoring
+* Expense summaries
+* Spending analytics
+* AI-powered spending analysis
+* CSV export
+* Responsive and accessible interface
 
-The AI is instructed to base its analysis only on the expense information provided by the user and not invent financial information.
 
-## Expense Management
 
-Users can easily manage their expenses through the application.
+## 👥 Target Users
 
-Each expense contains:
+The application is suitable for:
 
-* Description
-* Amount
-* Category
-* Date
+* Students managing monthly allowances
+* Professionals tracking personal expenses
+* Individuals trying to control discretionary spending
+* Users who want simple spending insights without complicated financial software
+
+
+
+## ✨ Main Features
+
+### 💰 Expense Management
 
 Users can:
 
 * Add expenses
-* Edit expenses
+* Edit existing expenses
 * Delete expenses
-* Search expenses
-* Filter expenses
-* Sort expenses
-* Export expense records as CSV
+* Assign categories
+* Select expense dates
+* Track expense amounts
 
-## Budget Management
+### 📊 Expense Dashboard
 
-Users can enter their monthly income and monitor their spending against their available budget.
+The dashboard displays:
 
-The application calculates:
-
-* Total monthly expenses
+* Monthly income
+* Total expenses
 * Remaining balance
-* Percentage of budget used
-* Budget status messages
+* Total expense entries
+* Budget usage percentage
 
-The dashboard provides visual feedback to help users understand whether they are within their budget.
+### 🔎 Search and Filtering
 
-## Smart Spending Insights
+Expenses can be searched by description and filtered by category.
 
-The application automatically generates spending insights from the recorded expense data.
+Supported categories include:
 
-Examples include:
-
-* Highest spending category
-* Percentage of expenses spent in a category
-* Available monthly balance
-* Budget warnings
-* Suggestions for reducing spending
-
-These insights are displayed directly on the dashboard.
-
-## Search, Filter and Sort
-
-### Search
-
-Users can search expenses by their description.
-
-### Filter
-
-Expenses can be filtered by category:
-
-* All
 * Food
 * Transport
 * Shopping
 * Bills
 * Other
 
-### Sort
+### 📈 Spending Analytics
 
-Expenses can be sorted by:
+The application provides visual and summarized information about spending patterns and categories.
 
-* Newest First
-* Oldest First
-* Highest Amount
-* Lowest Amount
+### 🤖 AI Spending Analysis
 
-## Expense Analytics
+The application includes an AI-powered spending analysis feature.
 
-The dashboard includes analytics components that provide a visual summary of spending activity.
+Users can request an analysis of their expense data to receive:
 
-Analytics include:
+* Spending patterns
+* Highest spending categories
+* Important observations
+* Practical suggestions
+* Savings recommendations
 
-* Total entries
-* Top spending category
-* Highest expense
-* Average expense
-* Latest expense
-* Expense breakdown by category
+The AI feature is designed to provide meaningful analysis of the user's existing expense data rather than functioning as a generic chatbot.
 
-## Form Validation
+### 📥 CSV Export
 
-The application validates expense information before saving it.
+Expense records can be exported for further analysis or personal record keeping.
 
-Validation includes:
+### 🌙 Dark Mode
 
-* Description must contain at least 3 characters
-* Amount is required
-* Amount must be greater than 0
-* Amount cannot exceed 1,000,000
-* Category is required
-* Date is required
-* Future dates are not allowed
+The interface supports dark mode for improved usability in different environments.
 
-## Data Persistence
+### ♿ Accessibility
 
-Expense records and monthly income are stored in the browser using `localStorage`.
+Accessibility was considered throughout the interface using semantic HTML, accessible labels, keyboard-friendly controls, meaningful headings, and appropriate ARIA attributes where required.
 
-This allows the user's data to remain available after refreshing the page or restarting the development server.
+The application was evaluated using **WAVE** and **Lighthouse**.
 
-The application also stores the user's dark/light mode preference.
+---
 
-## Mode
+# 🧠 AI Integration
 
-The application supports both:
+The AI feature analyzes structured expense information and generates spending observations and practical recommendations.
 
-* Light Mode
-* Dark Mode
+### How it works
 
-The interface is designed to maintain readable text, visible cards, buttons, inputs, charts, and expense information in both themes.
+1. The user records expenses in the application.
+2. The application collects the relevant expense information.
+3. The expense data is sent to the AI analysis endpoint.
+4. The AI receives structured spending information.
+5. The model analyzes categories, amounts, and spending patterns.
+6. The response is displayed as personalized spending insights.
 
-## Technologies Used
+### Why AI is useful
 
-### Frontend
+Traditional expense trackers can tell users **how much** they spent.
 
-* React
-* Vite
-* JavaScript
-* HTML
-* CSS
+This application also attempts to explain:
 
-### AI Integration
+* Where spending is concentrated
+* Which categories contribute most to expenses
+* What spending patterns may need attention
+* What practical steps could reduce unnecessary spending
 
-* Google Gemini API
-* `@google/genai`
+This makes the AI feature a functional part of the expense-management workflow rather than a standalone chatbot.
 
-### Development Tools
+---
 
-* Visual Studio Code
-* Git
-* GitHub
-* Vercel
+# 🏗️ Architecture Overview
 
-### Data Storage
-
-* Browser `localStorage`
-
-### Testing
-
-* Vitest
-* React Testing Library
-
-## Project Structure
+The application follows a component-based React architecture.
 
 ```text
 week3-expense-tracker/
 │
-├── api/
-│   └── analyze-expenses.js
-│
 ├── src/
-│   ├── assets/
-│   │
 │   ├── components/
 │   │   ├── AIAnalysis.jsx
 │   │   ├── AnalyticsCards.jsx
@@ -244,6 +174,7 @@ week3-expense-tracker/
 │   │   ├── AnalyticsCards.test.jsx
 │   │   ├── BudgetProgress.test.jsx
 │   │   ├── ExpenseForm.test.jsx
+│   │   ├── ExpenseItem.test.jsx
 │   │   ├── ExpenseList.test.jsx
 │   │   ├── FilterBar.test.jsx
 │   │   ├── IncomeInput.test.jsx
@@ -254,179 +185,351 @@ week3-expense-tracker/
 │   ├── App.jsx
 │   ├── App.css
 │   ├── index.css
-│   ├── main.jsx
-│   └── setupTests.js
+│   └── main.jsx
 │
-├── .gitignore
-├── AI_PROMPTS.md
-├── AI_REPORT.md
-├── eslint.config.js
-├── index.html
+├── api/
+│   └── analyze-expenses.js
+│
+├── public/
 ├── package.json
-├── package-lock.json
-├── README.md
-└── vite.config.js
+├── vite.config.js
+├── eslint.config.js
+└── README.md
 ```
 
-## Installation
+### Component Responsibilities
 
-### 1. Clone the repository
+| Component                 | Responsibility                                    |
+| ------------------------- | ------------------------------------------------- |
+| `App.jsx`                 | Main application state and component coordination |
+| `ExpenseForm.jsx`         | Adding and editing expenses                       |
+| `ExpenseList.jsx`         | Displaying expense records                        |
+| `ExpenseItem.jsx`         | Individual expense item and actions               |
+| `SummaryCard.jsx`         | Income, expense, balance and entry summaries      |
+| `BudgetProgress.jsx`      | Monthly budget usage                              |
+| `AnalyticsCards.jsx`      | Spending analytics                                |
+| `ExpenseChart.jsx`        | Visual spending information                       |
+| `FilterBar.jsx`           | Category filtering                                |
+| `SearchBar.jsx`           | Expense searching                                 |
+| `SortBar.jsx`             | Expense sorting                                   |
+| `IncomeInput.jsx`         | Monthly income input                              |
+| `SmartInsights.jsx`       | Spending observations                             |
+| `AIAnalysis.jsx`          | AI-powered expense analysis                       |
+| `ExportCSV.jsx`           | CSV expense export                                |
+| `Footer.jsx`              | Application footer                                |
+| `api/analyze-expenses.js` | AI analysis endpoint                              |
+
+---
+
+# 🛠️ Technology Stack
+
+### Frontend
+
+* React
+* Vite
+* JavaScript
+* HTML
+* CSS
+
+### Testing
+
+* Vitest
+* React Testing Library
+* jsdom
+* V8 Coverage
+
+### AI
+
+* Gemini/LLM-based expense analysis
+* Server-side API endpoint for AI requests
+
+### Deployment
+
+* Vercel
+
+### Development Tools
+
+* Git
+* GitHub
+* VS Code
+* Vercel CLI
+
+
+
+# 🚀 Getting Started
+
+## Prerequisites
+
+Make sure the following are installed:
+
+* Node.js
+* npm
+* Git
+
+## Clone the repository
 
 ```bash
-git clone https://github.com/nirma-waleed/frontend-ai-capstone.git
+git clone https://github.com/nirma-waleed/frontend-ai-capstone
 ```
 
-### 2. Navigate to the Expense Tracker project
+Navigate to the project:
 
 ```bash
 cd frontend-ai-capstone/week3-expense-tracker
 ```
 
-### 3. Install dependencies
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-### 4. Start the development server
+Start the development server:
 
 ```bash
 npm run dev
 ```
 
-The application will normally be available at:
+The application will be available at the local Vite URL shown in the terminal.
 
-```text
-http://localhost:5173
-```
 
-The exact port may be different if another application is already using the default port.
 
-## Environment Variables
+# 🔐 Environment Variables
 
-The AI Spending Analysis feature requires a Gemini API key.
+The AI integration uses environment configuration for the required API credentials.
 
-Create a `.env.local` file inside the `week3-expense-tracker` folder:
+Create a `.env.local` file in the project root and configure the required AI API key.
+
+Example:
 
 ```env
-GEMINI_API_KEY=your_gemini_api_key_here
+GEMINI_API_KEY=your_api_key_here
 ```
 
-Replace `your_gemini_api_key_here` with your own Gemini API key.
 
-### Security
+# 🧪 Testing
 
-Never commit your real API key to GitHub.
+The application uses **Vitest** and **React Testing Library**.
 
-The `.env.local` file should remain ignored by Git.
+Tests cover important components including:
 
-Do not place the Gemini API key directly inside frontend React components.
+* Analytics Cards
+* Budget Progress
+* Expense Form
+* Expense Item
+* Expense List
+* Filter Bar
+* Income Input
+* Search Bar
+* Smart Insights
+* Summary Card
 
-## Running the AI Feature Locally
-
-Because the AI endpoint is located in the Vercel `api` directory, the application can be run locally using:
+Run the test suite:
 
 ```bash
-npx vercel dev
+npm test -- --run
 ```
 
-Vercel will start the development environment and provide a local URL.
-
-The AI backend endpoint is:
-
-```text
-/api/analyze-expenses
-```
-
-The frontend sends the expense information to this endpoint, and the backend communicates with the Gemini API.
-
-## How to Use
-
-### 1. Enter Monthly Income
-
-Enter your monthly income in the Monthly Income section.
-
-### 2. Add an Expense
-
-Enter:
-
-* Description
-* Amount
-* Category
-* Date
-
-Then click **Add Expense**.
-
-### 3. Manage Expenses
-
-After adding an expense, you can:
-
-* Edit it
-* Delete it
-* Search for it
-* Filter it
-* Sort it
-
-### 4. Monitor Your Dashboard
-
-The dashboard automatically updates the financial statistics after expenses are added or removed.
-
-### 5. Review Spending Insights
-
-The Smart Spending Insights section provides automatic observations about your spending.
-
-### 6. Use AI Spending Analysis
-
-After adding expenses, click:
-
-**Analyze My Spending**
-
-The application sends the expense data to the backend AI endpoint and displays the generated Gemini analysis.
-
-### 7. Export Expenses
-
-Use the CSV export functionality to download your expense records.
-
-### 8. Change Theme
-
-Use the theme toggle to switch between Light Mode and Dark Mode.
-
-## Testing
-
-The project includes component tests using **Vitest** and **React Testing Library**.
-
-Test coverage includes:
-
-* AnalyticsCards
-* BudgetProgress
-* ExpenseForm
-* ExpenseList
-* FilterBar
-* IncomeInput
-* SearchBar
-* SmartInsights
-* SummaryCard
-
-Run the tests using:
+Run tests with coverage:
 
 ```bash
-npm test
+npx vitest run --coverage
 ```
 
-## Deployment
+The final test run successfully executed **10 test files and 15 tests**.
 
-The project is deployed using **Vercel**.
+The project achieved approximately:
 
-The application uses Vercel serverless functions for the AI spending analysis feature.
+* **82% statement coverage**
+* **82% function coverage**
+* **82% line coverage**
+* **53% branch coverage**
 
-### Live Application
+Coverage exceeded the assignment requirement of **50% component coverage**.
 
-**Expense Tracker:** https://frontend-ai-capstone-2eym.vercel.app/
 
-## Conclusion
 
-Expense Tracker is a practical expense management application that combines everyday expense tracking with budgeting, analytics, data export, and AI-powered spending insights. It provides users with a simple way to record their expenses, monitor their financial activity, understand their spending patterns, and receive useful recommendations.
+# ♿ Accessibility
 
-From a development perspective, the project demonstrates practical use of **React, Vite, JavaScript, CSS, localStorage, Vercel serverless functions, and the Google Gemini API**. It also focuses on responsive design, reusable components, form validation, testing, and a clear user experience.
+Accessibility was tested using **WAVE** and **Lighthouse**.
 
-Overall, Expense Tracker demonstrates how modern web technologies and AI can be combined to create a useful and user-friendly personal finance application.
+The application was improved based on accessibility audit feedback, including:
+
+* Semantic heading structure
+* Accessible form labels
+* ARIA labelling where appropriate
+* Meaningful button names
+* Keyboard-friendly controls
+* Clear content structure
+* Improved accessibility of dashboard sections
+
+### Audit Results
+
+The application achieved a strong accessibility result during Lighthouse testing.
+
+Latest recorded Lighthouse scores:
+
+| Category       | Score |
+| -------------- | ----: |
+| Performance    |    93 |
+| Accessibility  |   100 |
+| Best Practices |   100 |
+| SEO            |    90 |
+
+The WAVE accessibility evaluation also showed a **9.9/10 AIM score** during testing.
+
+Accessibility testing is still considered an ongoing process, and manual testing remains important in addition to automated tools.
+
+
+
+# 📱 Responsive Design
+
+The interface is designed to work across different screen sizes and devices.
+
+The layout adapts the dashboard, forms, expense lists, analytics, and navigation for smaller screens.
+
+Mobile performance and accessibility were specifically considered during the final audit.
+
+
+
+# 🛡️ Error Handling & Resilience
+
+The application validates expense input before submitting records.
+
+Validation includes:
+
+* Required description
+* Valid expense amount
+* Expense category
+* Expense date
+
+The budget calculation also handles cases where monthly income is zero to avoid invalid percentage calculations.
+
+For AI analysis, the application is designed to avoid exposing API credentials directly in the frontend and uses an API endpoint to process AI requests.
+
+If the AI service cannot provide a response, the application should fail gracefully rather than preventing the core expense-tracking functionality from working.
+
+# 💾 Data Management
+
+Expense and income information are managed within the application and persisted locally where applicable.
+
+This allows users to continue working with their expense data without requiring a traditional database for the core expense-tracking functionality.
+
+The AI analysis operates on the expense information supplied to the analysis feature.
+
+
+# 📦 Production Deployment
+
+The application is deployed using Vercel.
+
+### Production URL
+
+https://frontend-ai-capstone-2eym.vercel.app/
+
+The production deployment was tested after deployment to verify that the application loads and core functionality works correctly.
+
+### Deployment command
+
+```bash
+npx vercel --prod
+```
+
+
+# 🔄 Deployment Checklist
+
+Before production deployment, the following checks were completed:
+
+* [x] Application builds successfully
+* [x] Tests pass
+* [x] ESLint passes
+* [x] Production deployment completed
+* [x] Live URL verified
+* [x] Accessibility audit performed
+* [x] Lighthouse audit performed
+* [x] AI feature tested
+* [x] GitHub repository updated
+* [x] Coverage reports removed from Git tracking
+* [x] Environment files excluded from Git
+
+
+
+# ↩️ Rollback Plan
+
+The project is maintained using Git and GitHub.
+
+If a production deployment introduces a serious issue:
+
+1. Identify the last known working commit.
+2. Revert or redeploy that commit.
+3. Run the test suite.
+4. Run the production build.
+5. Redeploy the verified version using Vercel.
+
+The project history provides previous commits that can be used to identify stable versions.
+
+
+
+# ⚠️ Known Limitations
+
+The current version has some limitations:
+
+* Expense data is primarily intended for personal/local use.
+* There is no user authentication system.
+* There is no cloud database or multi-device synchronization.
+* AI responses depend on the availability and behavior of the configured AI service.
+* AI-generated suggestions should be treated as general spending guidance rather than professional financial advice.
+* Automated accessibility tools cannot replace complete manual accessibility testing.
+
+
+
+# 🔮 Future Improvements
+
+Possible future improvements include:
+
+* User authentication
+* Cloud database synchronization
+* Monthly and yearly reports
+* Custom spending categories
+* Advanced financial charts
+* AI-powered anomaly detection
+* Export to PDF
+* Improved mobile experience
+
+---
+
+# 📚 What I Learned
+
+This project helped me move beyond building individual React components toward thinking about a complete production application.
+
+I practiced:
+
+* Component-based React development
+* State management
+* Form validation
+* Accessibility
+* Automated testing
+* Code coverage
+* AI integration
+* API handling
+* Error handling
+* Git and GitHub workflows
+* Production deployment
+* Performance auditing
+* Accessibility auditing
+
+One of the most important lessons was that completing a feature is only part of building a production application. Testing, accessibility, documentation, deployment, and failure handling are equally important.
+
+---
+
+# 📝 Reflection
+
+The most challenging part of the project was bringing multiple concerns together into one working application. Building the expense features was only the beginning; integrating AI, testing components, improving accessibility, checking performance, and deploying the application required additional iteration.
+
+If I were building the project again, I would plan the architecture and testing strategy earlier instead of adding some of these concerns near the end.
+
+The biggest lesson was that a production-ready application is not simply an application that works. It should also be accessible, tested, documented, deployable, and understandable to another developer.
+
+## 🎯 Conclusion
+
+AI Expense Tracker is a complete, deployed expense-management application built to make everyday spending easier to track and understand. It combines practical expense tracking with AI-powered analysis while keeping accessibility, testing, and reliable deployment in focus.
+
